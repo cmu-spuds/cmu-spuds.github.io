@@ -1,17 +1,5 @@
 # CMU SPUD Lab Website
 
-This is the website for the Security, Privacy, Usability and Design (SPUD) Lab at Carnegie Mellon University.
-
-Built with [al-folio](https://github.com/alshedivat/al-folio), a Jekyll theme for academics.
-
-## Quick Links
-
-- **Publications**: Automatically fetched from `https://sauvik.me/papers.json` (configured in `_config.yml` → `jekyll_get_json`)
-- **News**: Automatically fetched from Google Sheets (configured in `_config.yml` → `google_sheets_news`)
-- **Configuration**: See `_config.yml` for all site settings
-- **Customization**: See [CUSTOMIZE.md](CUSTOMIZE.md) for detailed customization guide
-- **Installation**: See [INSTALL.md](INSTALL.md) for setup instructions
-
 ## Updating Content
 
 ### Publications
