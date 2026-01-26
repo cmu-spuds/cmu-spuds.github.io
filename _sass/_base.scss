@@ -1175,11 +1175,29 @@ swiper-container {
 .publication-title {
   font-weight: bold;
   margin-bottom: 0.3em;
-  color: var(--global-hover-color);
+  color: var(--global-theme-color);
+
+  a {
+    color: var(--global-theme-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 .publication-authors {
   margin-bottom: 0.3em;
-  color: var(--global-hover-color);
+  color: var(--global-text-color);
+
+  a {
+    color: var(--global-text-color);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
 }
 .publication-venue {
   color: var(--global-theme-color);
