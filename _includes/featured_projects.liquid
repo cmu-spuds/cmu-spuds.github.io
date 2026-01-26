@@ -1,0 +1,7 @@
+<div class="featured-projects-container">
+  {% for project in site.data.featured_projects %}
+    <a href="{{ project.url }}" target="_blank" class="featured-project-card">
+      <span class="featured-project-title">{{ project.title }}</span>
+    </a>
+  {% endfor %}
+</div>

@@ -14,6 +14,7 @@ profile:
     Pittsburgh, Pennsylvania, 15217
     <a href="mailto:spudlab@cmu.edu">spudlab@cmu.edu</a>
 
+featured_projects: true # includes featured project links
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false # includes social icons at the bottom of the page

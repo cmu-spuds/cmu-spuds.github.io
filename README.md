@@ -39,6 +39,15 @@ News items are managed via Google Sheets: [SPUD Lab News Sheet](https://docs.goo
 
 News updates automatically every 6 hours, or when the site is rebuilt.
 
+### Featured Projects
+
+Edit [`_data/featured_projects.yml`](_data/featured_projects.yml) to add project links shown on the homepage.
+
+```yaml
+- title: Project Name
+  url: https://project-url.com
+```
+
 ### People
 
 Edit [`_data/people.yml`](_data/people.yml) to update lab members.
