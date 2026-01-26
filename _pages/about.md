@@ -2,7 +2,7 @@
 layout: about
 title: home
 permalink: /
-subtitle: Security, Privacy, Usability and Design
+subtitle: Security, Privacy, Usability and Design | Led by <a href="http://www.sauvikdas.com/">Sauvik Das</a>
 nav: false # Add this line to include the page in navigation
 # nav_order: 1  # Add this line to control the order in navigation (optional)
 
@@ -10,8 +10,7 @@ profile:
   align: right
   image: spud_lab_logo.png
   image_circular: false # crops the image to make it circular
-  more_info: Led by <a href="http://www.sauvikdas.com/">Sauvik Das</a>
-    HCII, Carnegie Mellon University
+  more_info: HCII, Carnegie Mellon University
     Pittsburgh, Pennsylvania, 15217
     <a href="mailto:spudlab@cmu.edu">spudlab@cmu.edu</a>
 
