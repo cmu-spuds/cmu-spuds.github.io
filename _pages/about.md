@@ -10,7 +10,8 @@ profile:
   align: right
   image: spud_lab_logo.png
   image_circular: false # crops the image to make it circular
-  more_info: HCII, Carnegie Mellon University
+  more_info: Led by <a href="http://www.sauvikdas.com/">Sauvik Das</a>
+    HCII, Carnegie Mellon University
     Pittsburgh, Pennsylvania, 15217
     <a href="mailto:spudlab@cmu.edu">spudlab@cmu.edu</a>
 

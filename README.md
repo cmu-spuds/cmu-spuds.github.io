@@ -24,16 +24,37 @@ Publications are automatically pulled from `https://sauvik.me/papers.json` durin
 
 News items are managed via Google Sheets: [SPUD Lab News Sheet](https://docs.google.com/spreadsheets/d/1hjbkuxD2R-mZU4PkBJfvcV3QtldjzmIlqV8rP4M1CTY/edit?usp=sharing)
 
-**To update news**: SPUD lab members can edit the Google Sheet after logging in through `spudlab@andrew.cmu.edu`. The sheet should have columns: `date`, `title`, `content`, `inline`, `url`.
+**To add news:**
 
-**Manual News**: You can also create news items manually by adding `.md` files to the `_news` directory.
+1. Log in with `spudlab@andrew.cmu.edu`
+2. Add a new row to the sheet with these columns:
 
-### Other Content
+| Column | Description |
+|--------|-------------|
+| `date` | Date in `YYYY-MM-DD` format |
+| `title` | News headline |
+| `content` | Full news content (supports Markdown) |
+| `inline` | Set to `true` to show content on homepage, `false` for title only |
+| `url` | Optional link URL |
 
-- **People**: Edit `_data/people.yml`
-- **Projects**: Add files to `_projects/` directory
-- **Pages**: Edit files in `_pages/` directory
-- **Site Settings**: Edit `_config.yml`
+News updates automatically every 6 hours, or when the site is rebuilt.
+
+### People
+
+Edit [`_data/people.yml`](_data/people.yml) to update lab members.
+
+```yaml
+- name: Full Name
+  image: filename.jpg  # Place image in assets/img/
+  role: Title/Position
+  description: Research focus
+  website: https://example.com
+  years: 2023-present
+```
+
+### Adding Images
+
+Place images in `assets/img/` and reference just the filename in the YAML files.
 
 ## Development
 
