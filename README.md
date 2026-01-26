@@ -29,13 +29,13 @@ News items are managed via Google Sheets: [SPUD Lab News Sheet](https://docs.goo
 1. Log in with `spudlab@andrew.cmu.edu`
 2. Add a new row to the sheet with these columns:
 
-| Column | Description |
-|--------|-------------|
-| `date` | Date in `YYYY-MM-DD` format |
-| `title` | News headline |
-| `content` | Full news content (supports Markdown) |
-| `inline` | Set to `true` to show content on homepage, `false` for title only |
-| `url` | Optional link URL |
+| Column    | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| `date`    | Date in `YYYY-MM-DD` format                                       |
+| `title`   | News headline                                                     |
+| `content` | Full news content (supports Markdown)                             |
+| `inline`  | Set to `true` to show content on homepage, `false` for title only |
+| `url`     | Optional link URL                                                 |
 
 News updates automatically every 6 hours, or when the site is rebuilt.
 
@@ -45,7 +45,7 @@ Edit [`_data/people.yml`](_data/people.yml) to update lab members.
 
 ```yaml
 - name: Full Name
-  image: filename.jpg  # Place image in assets/img/
+  image: filename.jpg # Place image in assets/img/
   role: Title/Position
   description: Research focus
   website: https://example.com
