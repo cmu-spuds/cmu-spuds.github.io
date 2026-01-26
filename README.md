@@ -1,6 +1,6 @@
 # CMU SPUD Lab Website
 
-## Updating Content
+## Guide to Update Website Content
 
 ### Publications
 
