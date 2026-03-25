@@ -56,3 +56,39 @@ alumni:
     description: Privacy Collective Action
     website: https://yuxi-wu.github.io/
     years: 2019-2024
+
+RAs:
+  - name: Eishita Tripathi
+    image: ET.jpeg
+    role: Research Associate
+    description: NLP for Privacy
+    website: https://www.linkedin.com/in/eishita/
+    years: 2026~
+
+  - name: Kevin Huang
+    image: KH.jpeg
+    role: Research Assistant
+    description: NLP for Privacy
+    website: ~
+    years: 2025-present
+
+  - name: Daniel Amon-Kotey
+    image: DAK.jpeg
+    role: Research Assistant
+    description: NLP for Privacy
+    website: https://www.linkedin.com/in/daniel-v-ak/
+    years: 2025-present
+
+  - name: Yasmeen Galle
+    image: YG.jpeg
+    role: Research Associate
+    description: NLP for Privacy
+    website: https://www.linkedin.com/in/yasmeen-galle-3a7892273/
+    years: 2025-present
+
+  - name: Iris Yin
+    image: IY.jpeg
+    role: Research Associate
+    description: Social Cybersecurity
+    website: https://www.linkedin.com/in/iris-yin-28a490280/
+    years: 2026~

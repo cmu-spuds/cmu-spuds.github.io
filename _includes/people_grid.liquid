@@ -82,3 +82,33 @@
     {% endfor %}
   </div>
 {% endif %}
+
+{% if include.RAs %}
+  <div class="people-grid">
+    <div class="section-heading">
+      <h3>alumni</h3>
+      <p class="post-section-description">spudlings</p>
+    </div>
+
+    {% for person in include.alumni %}
+      <div class="person-card">
+        <a href="{{ person.website }}" class="card-link" target="_blank">
+          {% if person.image %}
+            {% assign image_path = person.image | prepend: '/assets/img/' | relative_url %}
+            <img src="{{ image_path }}" alt="{{ person.name }}" class="person-image">
+          {% endif %}
+          <h3 class="person-name person-text">{{ person.name }}</h3>
+          {% if person.description %}
+            <p class="person-description person-text">{{ person.description }}</p>
+          {% endif %}
+          <p class="person-role person-text">
+            {{ person.role }}
+            {% if person.years %}
+              {{ person.years }}
+            {% endif %}
+          </p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
