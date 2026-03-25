@@ -86,11 +86,11 @@
 {% if include.RAs %}
   <div class="people-grid">
     <div class="section-heading">
-      <h3>alumni</h3>
+      <h3>research assistants &amp; associates</h3>
       <p class="post-section-description">spudlings</p>
     </div>
 
-    {% for person in include.alumni %}
+    {% for person in include.RAs %}
       <div class="person-card">
         <a href="{{ person.website }}" class="card-link" target="_blank">
           {% if person.image %}
