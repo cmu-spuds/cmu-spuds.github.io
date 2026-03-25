@@ -1,11 +1,7 @@
-<div style="display: flex; flex-wrap: nowrap; gap: 1rem; overflow-x: auto; padding: 0.5rem 0;">
+<div class="featured-projects-container">
   {% for project in site.data.featured_projects %}
-    <a
-      href="{{ project.url }}"
-      target="_blank"
-      style="display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 180px; padding: 0.75rem 1.25rem; border: 1px solid var(--global-theme-color); border-radius: 6px; text-decoration: none; transition: all 0.2s ease; background-color: transparent; color: var(--global-theme-color); font-weight: 500; font-size: 0.9rem; white-space: nowrap;"
-    >
-      {{ project.title }}
+    <a class="featured-project-card" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+      <span class="featured-project-title">{{ project.title }}</span>
     </a>
   {% endfor %}
 </div>
