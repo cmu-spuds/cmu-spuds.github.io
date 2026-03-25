@@ -59,36 +59,36 @@ alumni:
 
 RAs:
   - name: Eishita Tripathi
-    image: ET.jpeg
+    image: ET.png
     role: Research Associate
     description: NLP for Privacy
     website: https://www.linkedin.com/in/eishita/
-    years: 2026~
+    years: 2026
 
   - name: Kevin Huang
-    image: KH.jpeg
-    role: Research Assistant
+    image: KH.jpg
+    role: RA
     description: NLP for Privacy
     website: 
     years: 2025-present
 
   - name: Daniel Amon-Kotey
-    image: DAK.jpeg
-    role: Research Assistant
+    image: DAK.jpg
+    role: RA
     description: NLP for Privacy
     website: https://www.linkedin.com/in/daniel-v-ak/
     years: 2025-present
 
   - name: Yasmeen Galle
-    image: YG.jpeg
-    role: Research Associate
+    image: YG.jpg
+    role: RA
     description: NLP for Privacy
     website: https://www.linkedin.com/in/yasmeen-galle-3a7892273/
     years: 2025-present
 
   - name: Iris Yin
-    image: IY.jpeg
-    role: Research Associate
+    image: IY.jpg
+    role: RA
     description: Social Cybersecurity
     website: https://www.linkedin.com/in/iris-yin-28a490280/
-    years: 2026~
+    years: 2026
