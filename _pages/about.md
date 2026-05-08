@@ -16,7 +16,7 @@ profile:
 
 featured_projects: true # includes featured project links
 news: true # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: true # includes award-winning publications from the publication JSON
 social: false # includes social icons at the bottom of the page
 ---
 

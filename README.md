@@ -4,7 +4,7 @@
 
 ### Publications
 
-Publications are automatically pulled from `https://sauvik.me/papers.json` during the build process. No local files need to be updated.
+Publications are automatically pulled from `https://sauvik.me/papers.json` during the build process. No local publication data file needs to be updated.
 
 **Configuration**: See `_config.yml` → `jekyll_get_json` section.
 
