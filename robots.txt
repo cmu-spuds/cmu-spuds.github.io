@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://cmu-spuds.github.io/sitemap.xml
