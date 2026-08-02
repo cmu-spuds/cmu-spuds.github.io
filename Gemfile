@@ -16,6 +16,7 @@ group :jekyll_plugins do
     gem 'jekyll-toc'
     gem 'jekyll-twitter-plugin'
     gem 'jemoji'
+    gem 'ostruct' # stdlib gem no longer bundled with Ruby >= 3.5; required by jekyll-twitter-plugin
     gem 'unicode_utils'
     gem 'webrick'
 end

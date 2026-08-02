@@ -1,0 +1,60 @@
+{% comment %}
+  Renders the artifact action buttons (View PDF / Video / Cite) for a publication.
+  Expects `publication` to be passed in via include.
+
+  Artifact URLs in the remote publications JSON can be relative paths
+  (e.g. /uploads/paper/pdf/69/pdf.pdf) that only resolve against the host that
+  serves those uploads — never against this site. Normalize them here, and fall
+  back in order: PDF → DOI → publisher page.
+{% endcomment %}
+
+{% assign publication = include.publication %}
+
+{% assign paper_url = '' %}
+{% assign paper_label = 'View PDF' %}
+{% if publication.pdf and publication.pdf != '' %}
+  {% if publication.pdf contains '://' %}
+    {% assign paper_url = publication.pdf %}
+  {% else %}
+    {% assign paper_url = publication.pdf | prepend: site.publications_asset_host %}
+  {% endif %}
+{% elsif publication.doi and publication.doi != '' %}
+  {% if publication.doi contains '://' %}
+    {% assign paper_url = publication.doi %}
+  {% else %}
+    {% assign paper_url = publication.doi | prepend: 'https://doi.org/' %}
+  {% endif %}
+  {% assign paper_label = 'DOI' %}
+{% elsif publication.html_paper_url and publication.html_paper_url != '' %}
+  {% assign paper_url = publication.html_paper_url %}
+  {% assign paper_label = 'Paper' %}
+{% endif %}
+
+<div class="publication-links" role="group" aria-label="Artifacts for {{ publication.title | strip_html | escape }}">
+  {% if paper_url != '' %}
+    <a class="pub-action" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer" data-proofer-ignore>
+      <i class="ti ti-file-text" aria-hidden="true"></i>
+      {{ paper_label }}
+    </a>
+  {% endif %}
+  {% if publication.video_url and publication.video_url != '' %}
+    <a class="pub-action" href="{{ publication.video_url }}" target="_blank" rel="noopener noreferrer" data-proofer-ignore>
+      <i class="ti ti-player-play" aria-hidden="true"></i>
+      Video
+    </a>
+  {% endif %}
+  {% if publication.slides and publication.slides != '' %}
+    {% assign slides_url = publication.slides %}
+    {% unless slides_url contains '://' %}{% assign slides_url = slides_url | prepend: site.publications_asset_host %}{% endunless %}
+    <a class="pub-action" href="{{ slides_url }}" target="_blank" rel="noopener noreferrer" data-proofer-ignore>
+      <i class="ti ti-presentation" aria-hidden="true"></i>
+      Slides
+    </a>
+  {% endif %}
+  {% if publication.citation and publication.citation != '' %}
+    <button type="button" class="pub-action pub-cite" data-citation="{{ publication.citation | escape }}">
+      <i class="ti ti-quote" aria-hidden="true"></i>
+      Cite
+    </button>
+  {% endif %}
+</div>

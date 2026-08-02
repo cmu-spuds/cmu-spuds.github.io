@@ -1,0 +1,26 @@
+name: Check publication artifact links
+
+# Publication PDFs/videos come from an external JSON feed; a broken artifact
+# link blocks the core "open the paper" journey. Check them on every push
+# (before deploy picks the change up) and daily to catch drift in the feed.
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *" # daily
+
+jobs:
+  check-artifact-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check publication artifact links 🔗
+        run: python3 bin/check_publication_links.py

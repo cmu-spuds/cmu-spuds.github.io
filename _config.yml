@@ -8,11 +8,13 @@ middle_name:
 last_name: Lab
 email: spudlab@cmu.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  The SPUD Lab (Security, Privacy, Usability and Design) at Carnegie Mellon University's
+  Human-Computer Interaction Institute, led by Sauvik Das, builds systems that empower
+  people with greater agency over their personal data.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: SPUD Lab, Carnegie Mellon University, HCII, security, privacy, usable security, human-computer interaction, Sauvik Das # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: spud_lab_logo.png # the favicon image in /assets/img/
 
@@ -49,7 +51,7 @@ navbar_fixed: true
 footer_fixed: false
 
 # Dimensions
-max_width: 800px
+max_width: 1100px
 
 # TODO: add layout settings (single page vs. multi-page)
 
@@ -58,9 +60,9 @@ max_width: 800px
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
 # see https://schema.org/docs/faq.html for more information
-serve_og_meta: false # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true # Include Open Graph meta tags in the HTML head
+serve_schema_org: true # Include Schema.org in the HTML head
+og_image: https://cmu-spuds.github.io/assets/img/spud_lab_logo-960.png # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Social integration
@@ -472,6 +474,10 @@ vega-lite:
 # -----------------------------------------------------------------------------
 # Get external JSON data
 # -----------------------------------------------------------------------------
+
+# Host that serves relative publication artifact paths (PDFs/slides) from the
+# remote publications JSON below.
+publications_asset_host: https://sauvik.me
 
 jekyll_get_json:
   - data: resume

@@ -9,14 +9,39 @@
   {% assign lab_members = lab_members | push: member.name %}
 {% endfor %}
 
-<div class="publications">
+<div class="selected-pubs-toolbar">
+  <div class="selected-pubs-filters" role="group" aria-label="Filter selected publications">
+    <span class="selected-pubs-filter-label" id="pub-filter-label">filter</span>
+    <button type="button" class="filter-chip active" data-pub-filter="all" aria-pressed="true">all</button>
+    <button type="button" class="filter-chip" data-pub-filter="chi" aria-pressed="false">CHI</button>
+    <button type="button" class="filter-chip" data-pub-filter="usenix" aria-pressed="false">USENIX Security</button>
+    <button type="button" class="filter-chip" data-pub-filter="cscw" aria-pressed="false">CSCW</button>
+    <button type="button" class="filter-chip" data-pub-filter="awarded" aria-pressed="false">🏆 award-winning</button>
+  </div>
+  <div class="selected-pubs-search">
+    <label for="selectedPubSearch" class="selected-pubs-search-label">search publications</label>
+    <input type="search" id="selectedPubSearch" placeholder="title, author, venue…" autocomplete="off">
+  </div>
+</div>
+
+<div class="publications" id="selected-publications-list">
   {% assign awarded_publications = site.data.publications | where_exp: 'item', 'item.awards.size > 0' %}
   {% assign sorted_awarded_publications = awarded_publications | sort: 'year' | reverse %}
 
   {% assign counter = 0 %}
   {% for publication in sorted_awarded_publications %}
     {% if counter < 5 %}
-      <div class="publication">
+      {% assign venue_key = 'other' %}
+      {% if publication.venue contains 'CHI PLAY' %}
+        {% assign venue_key = 'other' %}
+      {% elsif publication.venue contains 'CHI' %}
+        {% assign venue_key = 'chi' %}
+      {% elsif publication.venue contains 'USENIX' %}
+        {% assign venue_key = 'usenix' %}
+      {% elsif publication.venue contains 'CSCW' or publication.venue contains 'Computer-Supported' %}
+        {% assign venue_key = 'cscw' %}
+      {% endif %}
+      <div class="publication" data-venue="{{ venue_key }}" data-awarded="{% if publication.awards.size > 0 %}true{% else %}false{% endif %}">
         <div class="publication-title">
           {{ publication.title }}
         </div>
@@ -42,21 +67,14 @@
             <span class="award"> 🏆 {{ award.body }}</span>
           {% endfor %}
         </div>
-        <div class="publication-links">
-          {% if publication.pdf %}
-            <a href="{{ publication.pdf }}" target="_blank">PDF</a>
-          {% endif %}
-          {% if publication.video_url %}
-            <a href="{{ publication.video_url }}" target="_blank">Video</a>
-          {% endif %}
-          {% if publication.slides %}
-            <a href="{{ publication.slides }}" target="_blank">Slides</a>
-          {% endif %}
-        </div>
+        {% include publication_actions.liquid publication=publication %}
       </div>
       {% assign counter = counter | plus: 1 %}
     {% else %}
       {% break %}
     {% endif %}
   {% endfor %}
+  <p class="pubs-empty-state" id="selected-pubs-empty" hidden>No publications match — try clearing the search or filters.</p>
 </div>
+
+<a class="see-all-link" href="{{ '/publications/' | relative_url }}">view all publications <i class="ti ti-arrow-right" aria-hidden="true"></i></a>

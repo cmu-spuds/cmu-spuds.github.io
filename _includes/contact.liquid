@@ -1,0 +1,54 @@
+<div class="contact-footer">
+  <div class="contact-card">
+    <div class="contact-card-header">
+      <h2 class="contact-heading" id="contact-heading">contact</h2>
+      <a class="recruiting-chip" href="{{ '/join/' | relative_url }}">
+        <span class="recruiting-dot" aria-hidden="true"></span>
+        Recruiting
+      </a>
+    </div>
+    <p class="contact-address">HCII, Carnegie Mellon University · Pittsburgh, Pennsylvania, 15217</p>
+    <p class="contact-guidance">
+      Questions, collaborations, or press? Tell us briefly who you are and what you're curious about — we read every message.
+      Prospective students: see <a href="{{ '/join/' | relative_url }}">how to join the lab</a> first.
+    </p>
+    <form class="contact-form" id="contact-form" data-email="{{ site.email }}">
+      <div class="contact-form-row">
+        <div class="contact-field">
+          <label for="contact-email">your email</label>
+          <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="contact-field contact-field-role">
+          <label for="contact-role">I'm a…</label>
+          <select id="contact-role" name="role">
+            <option value="prospective student">prospective student</option>
+            <option value="collaborator">collaborator</option>
+            <option value="press">press</option>
+            <option value="other">other</option>
+          </select>
+        </div>
+      </div>
+      <div class="contact-field">
+        <label for="contact-message">message</label>
+        <textarea id="contact-message" name="message" rows="3" placeholder="What would you like to talk about?"></textarea>
+      </div>
+      <div class="contact-form-actions">
+        <button type="submit" class="btn-cta primary">send a message</button>
+        <a class="contact-email-fallback" href="mailto:{{ site.email }}">or email {{ site.email }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </form>
+  </div>
+  <nav class="contact-explore" aria-label="Explore the site">
+    <span class="contact-explore-label">explore</span>
+    <a href="{{ '/' | relative_url }}">home</a>
+    <a href="{{ '/projects/' | relative_url }}">projects</a>
+    <a href="{{ '/news/' | relative_url }}">news</a>
+    <a href="{{ '/publications/' | relative_url }}">publications</a>
+    <a href="{{ '/people/' | relative_url }}">people</a>
+    <a href="{{ '/join/' | relative_url }}">join</a>
+    <a class="back-to-top" href="#top">
+      <i class="ti ti-arrow-up" aria-hidden="true"></i>
+      back to top
+    </a>
+  </nav>
+</div>

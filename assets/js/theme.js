@@ -1,12 +1,15 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
-// Toggle between light and dark theme settings.
+// Cycle through system → light → dark theme settings. The choice is persisted
+// in localStorage; "system" follows the user's prefers-color-scheme.
 let toggleThemeSetting = () => {
   let themeSetting = determineThemeSetting();
-  if (themeSetting == "light") {
+  if (themeSetting == "system") {
+    setThemeSetting("light");
+  } else if (themeSetting == "light") {
     setThemeSetting("dark");
   } else {
-    setThemeSetting("light");
+    setThemeSetting("system");
   }
 };
 
@@ -15,6 +18,18 @@ let setThemeSetting = (themeSetting) => {
   localStorage.setItem("theme", themeSetting);
 
   document.documentElement.setAttribute("data-theme-setting", themeSetting);
+
+  // Announce the current setting on the toggle button for assistive tech.
+  let toggle = document.getElementById("light-toggle");
+  if (toggle) {
+    let labels = {
+      system: "Theme: follows your system preference. Click to switch to light mode.",
+      light: "Theme: light. Click to switch to dark mode.",
+      dark: "Theme: dark. Click to follow your system preference.",
+    };
+    toggle.setAttribute("title", labels[themeSetting]);
+    toggle.setAttribute("aria-label", labels[themeSetting]);
+  }
 
   applyTheme();
 };
@@ -191,12 +206,13 @@ let transTheme = () => {
   }, 500);
 };
 
-// Determine the expected state of the theme toggle, which can be "dark" or "light".
-// Default is "dark".
+// Determine the expected state of the theme toggle, which can be "dark",
+// "light", or "system". First-time visitors default to "system" so the site
+// honors their prefers-color-scheme; any explicit choice is persisted.
 let determineThemeSetting = () => {
   let themeSetting = localStorage.getItem("theme");
-  if (themeSetting != "dark" && themeSetting != "light") {
-    themeSetting = "dark";
+  if (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") {
+    themeSetting = "system";
   }
   return themeSetting;
 };
@@ -229,6 +245,10 @@ let initTheme = () => {
     mode_toggle.addEventListener("click", function () {
       toggleThemeSetting();
     });
+
+    // The initial setThemeSetting ran before the toggle existed in the DOM, so
+    // re-apply it now to label the toggle with the current setting.
+    setThemeSetting(determineThemeSetting());
   });
 
   // Add event listener to the system theme preference change.

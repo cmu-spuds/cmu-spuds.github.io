@@ -4,7 +4,7 @@ permalink: /publications/
 title: publications
 description:
 nav: true
-nav_order: 1
+nav_order: 4
 ---
 
 {% assign lab_members = "" | split: "" %}
@@ -33,11 +33,7 @@ nav_order: 1
     {% for publication in year.items %}
       <div class="publication">
         <div class="publication-title">
-          {% if publication.pdf %}
-            <a href="{{ publication.pdf }}" target="_blank">{{ publication.title }}</a>
-          {% else %}
-            {{ publication.title }}
-          {% endif %}
+          {{ publication.title }}
         </div>
         <div class="publication-authors">
           {% for author in publication.authors %}
@@ -68,17 +64,7 @@ nav_order: 1
             {% endfor %}
           </div>
         {% endif %}
-        <div class="publication-links">
-          {% if publication.pdf %}
-            <a href="{{ publication.pdf }}" target="_blank" data-proofer-ignore>PDF</a>
-          {% endif %}
-          {% if publication.video_url %}
-            <a href="{{ publication.video_url }}" target="_blank" data-proofer-ignore>Video</a>
-          {% endif %}
-          {% if publication.slides %}
-            <a href="{{ publication.slides }}" target="_blank" data-proofer-ignore>Slides</a>
-          {% endif %}
-        </div>
+        {% include publication_actions.liquid publication=publication %}
       </div>
     {% endfor %}
   {% endfor %}
@@ -124,3 +110,5 @@ function setSearch(term) {
   filterPublications();
 }
 </script>
+
+<script src="{{ '/assets/js/spuds-home.js' | relative_url }}" defer></script>

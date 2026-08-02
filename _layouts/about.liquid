@@ -1,70 +1,141 @@
 ---
 layout: default
 ---
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">
-      {% if site.title == 'blank' %}
-        <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-        {{ site.last_name }}
-      {% else %}
-        {{ site.title }}
+<div class="post" id="top">
+  <header class="hero">
+    <div class="hero-main">
+      <div class="hero-chips">
+        <a class="recruiting-chip" href="{{ '/join/' | relative_url }}">
+          <span class="recruiting-dot" aria-hidden="true"></span>
+          Recruiting
+        </a>
+        <span class="hero-chip">HCII, Carnegie Mellon University</span>
+      </div>
+      <h1 class="post-title">
+        {% if site.title == 'blank' %}
+          <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
+          {{ site.last_name }}
+        {% else %}
+          {{ site.title }}
+        {% endif %}
+      </h1>
+      <p class="desc">{{ page.subtitle }}</p>
+      <div class="hero-divider" aria-hidden="true"></div>
+      {% if page.hero.question %}
+        <h2 class="hero-question">{{ page.hero.question }}</h2>
       {% endif %}
-    </h1>
-    <p class="desc">{{ page.subtitle }}</p>
+      {% if page.hero.intro %}
+        <p class="hero-intro">{{ page.hero.intro }}</p>
+      {% endif %}
+      <div class="hero-ctas">
+        <a class="btn-cta primary" href="#contact">Contact / Collaborate</a>
+        <a class="btn-cta" href="#selected-publications">See publications</a>
+        <a class="btn-cta" href="#featured-projects">Explore projects</a>
+      </div>
+      <div class="hero-email">
+        <span class="hero-email-label">Or email the lab directly</span>
+        <a class="email-chip" href="mailto:{{ site.email }}">
+          <i class="ti ti-mail" aria-hidden="true"></i>
+          {{ site.email }}
+        </a>
+        <button type="button" class="email-chip copy-email" data-email="{{ site.email }}" aria-label="Copy email address to clipboard">
+          <i class="ti ti-copy" aria-hidden="true"></i>
+          <span class="copy-email-text">Copy</span>
+        </button>
+      </div>
+      <nav class="hero-jump" aria-label="Jump to section">
+        <span class="hero-jump-label">Jump to</span>
+        <a class="jump-chip" href="#featured-projects">featured projects</a>
+        <a class="jump-chip" href="#news">news</a>
+        <a class="jump-chip" href="#selected-publications">selected publications</a>
+      </nav>
+    </div>
+
+    <div class="hero-media">
+      <img
+        src="{{ '/assets/img/spud_lab_logo-960.png' | relative_url }}"
+        srcset="
+          {{ '/assets/img/spud_lab_logo-480.png' | relative_url }} 480w,
+          {{ '/assets/img/spud_lab_logo-960.png' | relative_url }} 960w,
+          {{ '/assets/img/spud_lab_logo.png' | relative_url }} 2000w
+        "
+        sizes="(min-width: 992px) 340px, (min-width: 576px) 50vw, 90vw"
+        width="2000"
+        height="2000"
+        alt="SPUD Lab logo: an illustrated potato"
+        loading="eager"
+        onerror="this.closest('.hero-media').classList.add('media-fallback')"
+      >
+      <span class="hero-media-fallback" aria-hidden="true">🥔</span>
+    </div>
+
+    <div class="hero-side">
+      {% if page.profile.more_info %}
+        <address class="hero-address">{{ page.profile.more_info }}</address>
+      {% endif %}
+      {% if page.hero.areas %}
+        <p class="hero-kicker" id="key-areas-label">We focus on three key areas</p>
+        <ul class="hero-areas" aria-labelledby="key-areas-label">
+          {% for area in page.hero.areas %}
+            <li class="area-chip">{{ area }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
   </header>
 
   <article>
-    {% if page.profile %}
-      <div class="profile float-{% if page.profile.align == 'left' %}left{% else %}right{% endif %}">
-        {% if page.profile.image %}
-          {% assign profile_image_path = page.profile.image | prepend: 'assets/img/' %}
-          {% if page.profile.image_circular %}
-            {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-          {% else %}
-            {% assign profile_image_class = 'img-fluid
-      rounded' %}
-            {% comment %}{% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}{% endcomment %}
-          {% endif %}
-          {% capture sizes %}(min-width: {{site.max_width}}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px)
-      30vw, 95vw"{% endcapture %}
-          {%
-            include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=page.profile.image
-            cache_bust=true
-          %}
-        {% endif %}
-        {% if page.profile.more_info %}
-          <div>{{ page.profile.more_info }}</div>
-          {% comment %}<div class="more-info">{{ page.profile.more_info }}</div>{% endcomment %}
-        {% endif %}
-      </div>
+    {% if content contains '<p>' %}
+      <details class="hero-more">
+        <summary>Read more about our mission</summary>
+        <div class="clearfix">{{ content }}</div>
+      </details>
     {% endif %}
-
-    <div class="clearfix">{{ content }}</div>
 
     <!-- Featured Projects -->
     {% if page.featured_projects %}
-      <h2>featured projects</h2>
-      {% include featured_projects.liquid %}
+      <section id="featured-projects" class="home-section">
+        <div class="section-header">
+          <h2>featured projects</h2>
+          <a class="see-all-link" href="{{ '/projects/' | relative_url }}">see all projects <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        {% include featured_projects.liquid %}
+      </section>
     {% endif %}
 
     <!-- News -->
     {% if page.news and site.announcements.enabled %}
-      <h2>news</h2>
-      {% include news.liquid limit=true %}
+      <section id="news" class="home-section">
+        <div class="section-header">
+          <h2>news</h2>
+          <a class="see-all-link" href="{{ '/news/' | relative_url }}">see all news <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        {% include news.liquid limit=true %}
+      </section>
     {% endif %}
 
     <!-- Latest posts -->
     {% if site.latest_posts.enabled %}
-      <h2>latest posts</h2>
-      {% include latest_posts.liquid %}
+      <section class="home-section">
+        <h2>latest posts</h2>
+        {% include latest_posts.liquid %}
+      </section>
     {% endif %}
 
     <!-- Selected papers -->
     {% if page.selected_papers %}
-      <h2>selected publications</h2>
-      {% include selected-new.liquid %}
+      <section id="selected-publications" class="home-section">
+        <div class="section-header">
+          <h2>selected publications</h2>
+        </div>
+        {% include selected-new.liquid %}
+      </section>
     {% endif %}
+
+    <!-- Contact -->
+    <section id="contact" class="home-section" aria-labelledby="contact-heading">
+      {% include contact.liquid %}
+    </section>
 
     <!-- Social -->
     {% if page.social %}
@@ -76,3 +147,5 @@ layout: default
     {% endif %}
   </article>
 </div>
+
+<script src="{{ '/assets/js/spuds-home.js' | relative_url }}" defer></script>

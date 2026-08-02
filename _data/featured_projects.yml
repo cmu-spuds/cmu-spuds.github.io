@@ -1,17 +1,25 @@
+- title: Privy
+  url: https://cmu-spuds.github.io/privy/
+  flagship: true
+  award: Best Paper Honorable Mention
+  paper: "Privy: Envisioning and Mitigating Privacy Risks for Consumer-facing AI Product Concepts"
+  venue: ACM Conference on Human Factors In Computing Systems (CHI)
+
+- title: AI Privacy Taxonomy
+  url: https://aiprivacytaxonomy.com/
+  flagship: true
+  award: Best Paper
+  paper: "Deepfakes, Phrenology, Surveillance, and More! A Taxonomy of AI Privacy Risks"
+  venue: ACM Conference on Human Factors In Computing Systems (CHI)
+
 - title: Why Johnny Can't Use Agents
   url: https://cmu-spuds.github.io/why-johnny-can-t-use-agents/
 
 - title: Imago Obscura
   url: https://cmu-spuds.github.io/imago-obscura/
 
-- title: AI Privacy Taxonomy
-  url: https://aiprivacytaxonomy.com/
-
 - title: Privacy Mirror
   url: https://social-cybersecurity-group.github.io/PrivacyMirrorSite/
 
 - title: Adulting101
   url: https://adulting101challenge.com/
-
-- title: Privy
-  url: https://cmu-spuds.github.io/privy/

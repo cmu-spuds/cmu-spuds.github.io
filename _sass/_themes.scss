@@ -6,7 +6,7 @@
   --global-bg-color: #{$beige-color};
   --global-code-bg-color: #{$code-bg-color-light};
   --global-text-color: #{$brown-color};
-  --global-text-color-light: #{$brown-color-light};
+  --global-text-color-light: #{rgba($brown-color, 0.65)};
   --global-theme-color: #{$brown-color-medium};
   --global-hover-color: #{$brown-color-dark};
   --global-hover-text-color: #{$beige-color};
@@ -57,7 +57,7 @@ html[data-theme="dark"] {
   --global-code-bg-color: #{lighten($dark-bg-color, 10%)};
   --global-text-color: #{$dark-text-color};
   --global-text-color-light: #{lighten($dark-text-color, 15%)};
-  --global-theme-color: #{lighten($dark-text-color, 5%)};
+  --global-theme-color: #{$dark-theme-color};
   --global-hover-color: #{darken($dark-theme-color, 10%)};
   --global-hover-text-color: #{$dark-bg-color};
   --global-footer-bg-color: #{darken($dark-theme-color, 10%)};
