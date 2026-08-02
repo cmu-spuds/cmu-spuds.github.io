@@ -131,6 +131,39 @@ summary:focus-visible {
   margin-bottom: 0.25rem;
 }
 
+// Affiliation lockup: lab mark beside the title with institutional badge chips.
+.hero-title-lockup {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hero-mark {
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  padding: 0.6rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 12px;
+  background: var(--global-card-bg-color);
+  object-fit: contain;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 991.98px) {
+  // The full-width hero media card already sits directly above the title on
+  // small screens; a second mark beside it would duplicate the branding.
+  .hero-mark {
+    display: none;
+  }
+}
+
 .hero .desc {
   color: var(--global-text-color-light);
   margin-bottom: 1rem;

@@ -9,17 +9,32 @@ layout: default
           <span class="recruiting-dot" aria-hidden="true"></span>
           Recruiting
         </a>
-        <span class="hero-chip">HCII, Carnegie Mellon University</span>
       </div>
-      <h1 class="post-title">
-        {% if site.title == 'blank' %}
-          <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
-          {{ site.last_name }}
-        {% else %}
-          {{ site.title }}
-        {% endif %}
-      </h1>
-      <p class="desc">{{ page.subtitle }}</p>
+      <div class="hero-title-lockup">
+        <img
+          class="hero-mark"
+          src="{{ '/assets/img/spud_lab_logo-480.png' | relative_url }}"
+          width="480"
+          height="480"
+          alt=""
+          aria-hidden="true"
+        >
+        <div class="hero-title-text">
+          <h1 class="post-title">
+            {% if site.title == 'blank' %}
+              <span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }}
+              {{ site.last_name }}
+            {% else %}
+              {{ site.title }}
+            {% endif %}
+          </h1>
+          <p class="desc">{{ page.subtitle }}</p>
+          <div class="hero-badges">
+            <span class="hero-chip">HCII, Carnegie Mellon University</span>
+            <span class="hero-chip">Pittsburgh, Pennsylvania</span>
+          </div>
+        </div>
+      </div>
       <div class="hero-divider" aria-hidden="true"></div>
       {% if page.hero.question %}
         <h2 class="hero-question">{{ page.hero.question }}</h2>
