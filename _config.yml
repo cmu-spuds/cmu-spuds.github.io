@@ -3,6 +3,7 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
+homepage_title: "SPUD Lab — Security, Privacy, Usability and Design | HCII, Carnegie Mellon University" # keyword-aligned <title> for the homepage
 first_name: SPUD
 middle_name:
 last_name: Lab
