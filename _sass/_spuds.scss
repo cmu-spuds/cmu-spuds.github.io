@@ -813,6 +813,51 @@ summary:focus-visible {
   letter-spacing: 0.06em;
 }
 
+// Persistent floating back-to-top: hidden until the visitor scrolls past the
+// hero, then fixed bottom-right so recovery never requires reaching the footer.
+.back-to-top-floating {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 999px;
+  background: var(--global-card-bg-color);
+  color: var(--global-theme-color) !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: var(--global-theme-color);
+    color: var(--global-bg-color) !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .back-to-top-floating .back-to-top-label {
+    display: none;
+  }
+}
+
 .back-to-top {
   display: inline-flex;
   align-items: center;

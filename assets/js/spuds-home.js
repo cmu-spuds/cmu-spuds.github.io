@@ -112,4 +112,14 @@
   });
 
   if (searchInput) searchInput.addEventListener("input", applyPublicationFilters);
+
+  // Floating back-to-top: appears once the visitor scrolls past the hero.
+  var floatingTop = document.querySelector(".back-to-top-floating");
+  if (floatingTop) {
+    var toggleFloatingTop = function () {
+      floatingTop.classList.toggle("is-visible", window.scrollY > 600);
+    };
+    window.addEventListener("scroll", toggleFloatingTop, { passive: true });
+    toggleFloatingTop();
+  }
 })();
