@@ -658,6 +658,20 @@ summary:focus-visible {
   color: var(--global-text-color-light);
 }
 
+// Publication topic tags: outline chips. The theme's original style filled
+// these with the accent color, which turned gold-on-gold (illegible) once
+// article links adopted the accent; an outline chip keeps the accent link
+// text on the page background instead.
+.publication-tags .tag {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--global-theme-color);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  margin: 0 0.35rem 0.35rem 0;
+  font-size: 0.85rem;
+}
+
 // Action pills, shared with the /publications/ page (SF-06)
 .publication-links {
   display: flex;
