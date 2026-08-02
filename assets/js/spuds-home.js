@@ -56,11 +56,13 @@
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
       event.preventDefault();
+      var nameField = document.getElementById("contact-name");
+      var name = nameField ? (nameField.value || "").trim() : "";
       var email = (document.getElementById("contact-email").value || "").trim();
       var role = document.getElementById("contact-role").value;
       var message = (document.getElementById("contact-message").value || "").trim();
-      var subject = "[SPUD Lab] Message from a " + role;
-      var body = message + "\n\n— " + (email || "(no email given)");
+      var subject = "[SPUD Lab] Message from a " + role + (name ? " — " + name : "");
+      var body = message + "\n\n— " + (name ? name + " " : "") + (email ? "<" + email + ">" : "(no email given)");
       var mailto =
         "mailto:" +
         (contactForm.dataset.email || "spudlab@cmu.edu") +
