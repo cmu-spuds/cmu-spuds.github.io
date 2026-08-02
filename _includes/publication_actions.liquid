@@ -5,7 +5,7 @@
   Artifact URLs in the remote publications JSON can be relative paths
   (e.g. /uploads/paper/pdf/69/pdf.pdf) that only resolve against the host that
   serves those uploads — never against this site. Normalize them here, and fall
-  back in order: PDF → DOI → publisher page.
+  back in order: PDF → DOI → arXiv → publisher page.
 {% endcomment %}
 
 {% assign publication = include.publication %}
@@ -25,6 +25,20 @@
     {% assign paper_url = publication.doi | prepend: 'https://doi.org/' %}
   {% endif %}
   {% assign paper_label = 'DOI' %}
+{% elsif publication.arxiv_url and publication.arxiv_url != '' %}
+  {% if publication.arxiv_url contains '://' %}
+    {% assign paper_url = publication.arxiv_url %}
+  {% else %}
+    {% assign paper_url = publication.arxiv_url | prepend: 'https://arxiv.org/abs/' %}
+  {% endif %}
+  {% assign paper_label = 'arXiv' %}
+{% elsif publication.arxiv and publication.arxiv != '' %}
+  {% if publication.arxiv contains '://' %}
+    {% assign paper_url = publication.arxiv %}
+  {% else %}
+    {% assign paper_url = publication.arxiv | prepend: 'https://arxiv.org/abs/' %}
+  {% endif %}
+  {% assign paper_label = 'arXiv' %}
 {% elsif publication.html_paper_url and publication.html_paper_url != '' %}
   {% assign paper_url = publication.html_paper_url %}
   {% assign paper_label = 'Paper' %}

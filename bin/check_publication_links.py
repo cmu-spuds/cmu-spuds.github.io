@@ -28,6 +28,8 @@ def normalize(url: str, kind: str) -> str | None:
     if "://" not in url:
         if kind == "doi":
             return "https://doi.org/" + url.lstrip("/")
+        if kind == "arxiv":
+            return "https://arxiv.org/abs/" + url.lstrip("/")
         return ASSET_HOST + (url if url.startswith("/") else "/" + url)
     return url
 
@@ -62,6 +64,7 @@ def main() -> int:
             "video": normalize(publication.get("video_url"), "video"),
             "slides": normalize(publication.get("slides"), "slides"),
             "doi": normalize(publication.get("doi"), "doi"),
+            "arxiv": normalize(publication.get("arxiv_url") or publication.get("arxiv"), "arxiv"),
         }
         for kind, url in artifacts.items():
             if not url:
