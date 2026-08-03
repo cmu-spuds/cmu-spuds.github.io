@@ -9,8 +9,8 @@
     </div>
     <p class="contact-address">HCII, Carnegie Mellon University · Pittsburgh, Pennsylvania, 15217</p>
     <p class="contact-guidance">
-      Questions, collaborations, or press? Tell us briefly who you are and what you're curious about — we read every message.
-      Prospective students: see <a href="{{ '/join/' | relative_url }}">how to join the lab</a> first.
+      Questions, collaborations, or press? Tell us briefly who you are and what you're curious about — we read every message. Prospective students:
+      see <a href="{{ '/join/' | relative_url }}">how to join the lab</a> first.
     </p>
     <form class="contact-form" id="contact-form" data-email="{{ site.email }}">
       <div class="contact-form-row">
@@ -38,7 +38,10 @@
       </div>
       <div class="contact-form-actions">
         <button type="submit" class="btn-cta primary">send a message</button>
-        <a class="contact-email-fallback" href="mailto:{{ site.email }}">or email {{ site.email }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <a class="contact-email-fallback" href="mailto:{{ site.email }}"
+          >or email {{ site.email }}
+          <i class="ti ti-arrow-right" aria-hidden="true"></i
+        ></a>
       </div>
     </form>
   </div>

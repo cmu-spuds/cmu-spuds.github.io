@@ -89,10 +89,7 @@
     var anyVisible = false;
 
     pubList.querySelectorAll(".publication").forEach(function (pub) {
-      var matchesFilter =
-        filter === "all" ||
-        (filter === "awarded" && pub.dataset.awarded === "true") ||
-        pub.dataset.venue === filter;
+      var matchesFilter = filter === "all" || (filter === "awarded" && pub.dataset.awarded === "true") || pub.dataset.venue === filter;
       var matchesQuery = query === "" || (pub.textContent || "").toUpperCase().indexOf(query) > -1;
       var visible = matchesFilter && matchesQuery;
       pub.hidden = !visible;
