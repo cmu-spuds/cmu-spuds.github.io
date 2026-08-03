@@ -157,10 +157,10 @@ summary:focus-visible {
 }
 
 @media (max-width: 991.98px) {
-  // The full-width hero media card already sits directly above the title on
-  // small screens; a second mark beside it would duplicate the branding.
   .hero-mark {
-    display: none;
+    width: 64px;
+    height: 64px;
+    padding: 0.4rem;
   }
 }
 
@@ -307,10 +307,10 @@ summary:focus-visible {
   }
 }
 
-// Hero media card (SF-01)
+// Hero media card (SF-01): the lab group photo, 4:3 like the source image.
 .hero-media {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
   width: 100%;
   max-width: 340px;
   border: 1px solid var(--global-divider-color);
@@ -322,9 +322,9 @@ summary:focus-visible {
   justify-content: center;
 
   img {
-    width: 78%;
-    height: 78%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 
@@ -346,12 +346,6 @@ summary:focus-visible {
 @media (max-width: 991.98px) {
   .hero-media {
     max-width: none;
-    aspect-ratio: 16 / 9;
-
-    img {
-      width: auto;
-      height: 88%;
-    }
   }
 }
 
