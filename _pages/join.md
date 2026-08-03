@@ -17,7 +17,7 @@ nav_order: 6
 
 ## Prospective PhD students
 
-The SPUD Lab admits PhD students through Carnegie Mellon's [Human-Computer Interaction Institute PhD program](https://www.hcii.cmu.edu/academics/hcii-phd). We typically consider new students each admissions cycle; apply to the HCII PhD program and mention [Sauvik Das](http://www.sauvikdas.com/) as a potential advisor in your application.
+The SPUD Lab admits PhD students through Carnegie Mellon's [Human-Computer Interaction Institute PhD program](https://www.hcii.cmu.edu/academics/phd). We typically consider new students each admissions cycle; apply to the HCII PhD program and mention [Sauvik Das](http://www.sauvikdas.com/) as a potential advisor in your application.
 
 Strong applicants usually have interests at the intersection of human-computer interaction, security and privacy, and/or applied AI. You do not need to cold-email to be considered — applications are read carefully — but thoughtful notes about research fit are welcome at <a href="mailto:spudlab@cmu.edu">spudlab@cmu.edu</a>.
 
