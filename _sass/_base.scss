@@ -1159,6 +1159,17 @@ swiper-container {
 #publicationSearch::placeholder {
   color: var(--global-theme-color); /* Replace with your desired color */
 }
+#preprintToggle {
+  color: var(--global-theme-color);
+  border: 1px solid var(--global-theme-color);
+  margin-left: 0;
+
+  &:hover,
+  &[aria-pressed="true"] {
+    background-color: var(--global-theme-color);
+    color: var(--global-bg-color);
+  }
+}
 .publications {
   margin-top: 2em;
 }

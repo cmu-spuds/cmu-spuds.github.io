@@ -21,17 +21,19 @@ nav_order: 4
 <!-- Search bar -->
 <div class="search-container">
   <input type="text" id="publicationSearch" onkeyup="filterPublications()" placeholder="Search for publications...">
+  <button type="button" id="preprintToggle" class="btn btn-sm z-depth-0 mt-2" aria-pressed="false" aria-controls="publicationList" onclick="togglePreprints()">Show preprints</button>
 </div>
 
 <!-- publications.html -->
-<div class="publications">
+<div class="publications" id="publicationList">
   {% assign publications = site.data.publications | sort: "year" | reverse %}
   {% assign grouped_publications = publications | group_by: "year" %}
   
   {% for year in grouped_publications %}
-    <h2 class="publication-year">{{year.name}}</h2>
+    {% assign published_items = year.items | where_exp: "item", "item.status != 'preprint'" %}
+    <h2 class="publication-year"{% if published_items.size == 0 %} style="display: none;"{% endif %}>{{year.name}}</h2>
     {% for publication in year.items %}
-      <div class="publication">
+      <div class="publication" data-preprint="{% if publication.status == 'preprint' %}true{% else %}false{% endif %}"{% if publication.status == 'preprint' %} style="display: none;"{% endif %}>
         <div class="publication-title">
           {{ publication.title }}
         </div>
@@ -76,11 +78,12 @@ function filterPublications() {
   input = document.getElementById('publicationSearch');
   filter = input.value.toUpperCase();
   publications = document.getElementsByClassName('publication');
+  var showPreprints = document.getElementById('preprintToggle').getAttribute('aria-pressed') === 'true';
 
   for (i = 0; i < publications.length; i++) {
     publication = publications[i];
     txtValue = publication.textContent || publication.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    if ((showPreprints || publication.dataset.preprint !== 'true') && txtValue.toUpperCase().indexOf(filter) > -1) {
       publication.style.display = "";
     } else {
       publication.style.display = "none";
@@ -102,6 +105,14 @@ function filterPublications() {
     }
     year.style.display = visiblePublications ? "" : "none";
   }
+}
+
+function togglePreprints() {
+  var button = document.getElementById('preprintToggle');
+  var showPreprints = button.getAttribute('aria-pressed') !== 'true';
+  button.setAttribute('aria-pressed', String(showPreprints));
+  button.textContent = showPreprints ? 'Hide preprints' : 'Show preprints';
+  filterPublications();
 }
 
 function setSearch(term) {
