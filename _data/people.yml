@@ -36,6 +36,11 @@ students:
     description: Social agent simulation & policy
     website: https://www.yuxuanli.com
     years: 2024-present
+  - name: Bill Watson
+    image: bill_watson.jpeg
+    role: CMU Ph.D.
+    website: https://scholar.google.com/citations?user=4pujax8AAAAJ&hl=en
+    years: 2026-present
 
 alumni:
   - name: Jacob Logas
