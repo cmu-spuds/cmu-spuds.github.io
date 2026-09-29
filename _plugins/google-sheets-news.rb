@@ -2,7 +2,6 @@ require 'net/http'
 require 'uri'
 require 'csv'
 require 'date'
-require 'fileutils'
 
 module GoogleSheetsNews
   class GoogleSheetsNewsGenerator < Jekyll::Generator
@@ -65,13 +64,14 @@ module GoogleSheetsNews
         csv_data = response.body
         news_items = parse_csv(csv_data)
         
-        # Clear existing Google Sheets news files (files starting with "gs_")
-        clear_old_news_files(site)
-        
-        # Create news collection items
-        news_items.each_with_index do |item, index|
-          create_news_file(site, item, index)
+        # Generators run after Jekyll reads collection files. Update the loaded
+        # documents so this build uses fresh news, without modifying the source.
+        collection = site.collections.fetch('news')
+        imported_documents = news_items.map do |item|
+          create_news_document(site, collection, item)
         end
+        local_documents = collection.docs.reject { |doc| File.basename(doc.path).start_with?('gs_') }
+        collection.docs.replace((local_documents + imported_documents).sort)
         
         Jekyll.logger.info "Successfully imported #{news_items.length} news items from Google Sheets"
         
@@ -130,44 +130,24 @@ module GoogleSheetsNews
       end
     end
     
-    def clear_old_news_files(site)
-      news_dir = File.join(site.source, '_news')
-      return unless Dir.exist?(news_dir)
-      
-      Dir.glob(File.join(news_dir, 'gs_*.md')).each do |file|
-        File.delete(file)
-      end
-    end
-    
-    def create_news_file(site, item, index)
-      # Generate filename from date and index (prefix with gs_ to identify Google Sheets items)
+    def create_news_document(site, collection, item)
+      # Preserve the paths used by existing Google Sheets announcements.
       date_str = item['date'].strftime('%Y-%m-%d')
-      # Create a safe filename from title
       safe_title = item['title'].downcase.gsub(/[^a-z0-9]+/, '-')[0..30]
       filename = "gs_#{date_str}_#{safe_title}.md"
-      filepath = File.join(site.source, '_news', filename)
-      
-      # Ensure _news directory exists
-      FileUtils.mkdir_p(File.dirname(filepath))
-      
-      # Generate front matter and content
-      front_matter = {
+      filepath = File.join(collection.directory, filename)
+
+      document = Jekyll::Document.new(filepath, site: site, collection: collection)
+      document.merge_data!({
         'layout' => 'post',
+        'title' => item['title'],
         'date' => item['date'].strftime('%Y-%m-%d 00:00:00-0000'),
         'inline' => item['inline'],
         'related_posts' => false
-      }
-      
-      content = item['content']
-      
-      # Write the file
-      File.open(filepath, 'w') do |f|
-        f.puts front_matter.to_yaml
-        f.puts '---'
-        f.puts ''
-        f.puts content
-      end
+      })
+      document.content = item['content']
+      document.post_read
+      document
     end
   end
 end
-

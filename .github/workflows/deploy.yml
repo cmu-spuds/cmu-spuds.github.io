@@ -7,6 +7,10 @@ on:
       - main
     paths:
       - "assets/**"
+      - "_plugins/**"
+      - "test/**"
+      - "Gemfile"
+      - "Gemfile.lock"
       - "**.html"
       - "**.js"
       - "**.liquid"
@@ -31,6 +35,10 @@ on:
       - main
     paths:
       - "assets/**"
+      - "_plugins/**"
+      - "test/**"
+      - "Gemfile"
+      - "Gemfile.lock"
       - "**.html"
       - "**.js"
       - "**.liquid"
@@ -70,6 +78,8 @@ jobs:
         with:
           ruby-version: "3.2.2"
           bundler-cache: true
+      - name: Test news import
+        run: bundle exec ruby test/google_sheets_news_test.rb
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:

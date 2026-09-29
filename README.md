@@ -26,6 +26,9 @@ News items are managed via Google Sheets: [SPUD Lab News Sheet](https://docs.goo
 | `url`     | Optional link URL                                                 |
 
 News updates automatically every 6 hours, or when the site is rebuilt.
+The build renders fetched announcements immediately without changing source files.
+Checked-in `gs_` news files provide fallback content if the sheet cannot be fetched
+or parsed; manually maintained news files are preserved.
 
 ### Featured Projects
 
@@ -69,6 +72,15 @@ bundle exec jekyll build
 ```
 
 The site will be generated in the `_site` directory.
+
+### Tests
+
+```bash
+bundle exec ruby test/google_sheets_news_test.rb
+```
+
+These tests build temporary Jekyll sites with simulated sheet responses and run
+before deployment.
 
 ### Clear Cache and Rebuild
 

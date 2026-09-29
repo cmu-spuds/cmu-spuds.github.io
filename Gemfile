@@ -25,3 +25,6 @@ group :other_plugins do
     gem 'httparty'
     gem 'nokogiri'
 end
+group :test do
+    gem 'minitest', '~> 5.0'
+end
