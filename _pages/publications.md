@@ -21,7 +21,7 @@ nav_order: 4
 <!-- Search bar -->
 <div class="search-container">
   <input type="text" id="publicationSearch" onkeyup="filterPublications()" placeholder="Search for publications...">
-  <button type="button" id="preprintToggle" class="btn btn-sm z-depth-0 mt-2" aria-pressed="false" aria-controls="publicationList" onclick="togglePreprints()">Show preprints</button>
+  <button type="button" id="preprintToggle" aria-pressed="false" aria-controls="publicationList" onclick="togglePreprints()">Show preprints</button>
 </div>
 
 <!-- publications.html -->

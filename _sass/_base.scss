@@ -1144,12 +1144,17 @@ swiper-container {
   color: var(--global-theme-color); /* You can change this to any color you prefer */
 }
 .search-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
   margin-bottom: 20px;
 }
 #publicationSearch {
   background-color: var(--global-bg-color);
   color: var(--global-theme-color);
   width: 100%;
+  min-width: 0;
+  min-height: 44px;
   font-size: 16px;
   padding: 6px 10px;
   border: 1px solid var(--global-theme-color);
@@ -1160,14 +1165,30 @@ swiper-container {
   color: var(--global-theme-color); /* Replace with your desired color */
 }
 #preprintToggle {
+  background-color: transparent;
   color: var(--global-theme-color);
   border: 1px solid var(--global-theme-color);
-  margin-left: 0;
+  border-radius: 3px;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font: inherit;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
 
   &:hover,
   &[aria-pressed="true"] {
     background-color: var(--global-theme-color);
     color: var(--global-bg-color);
+  }
+}
+@media (max-width: 575.98px) {
+  .search-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #preprintToggle {
+    justify-self: start;
   }
 }
 .publications {
