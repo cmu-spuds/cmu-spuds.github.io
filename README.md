@@ -25,7 +25,9 @@ News items are managed via Google Sheets: [SPUD Lab News Sheet](https://docs.goo
 | `inline`  | Set to `true` to show content on homepage, `false` for title only |
 | `url`     | Optional link URL                                                 |
 
-News updates automatically every 6 hours, or when the site is rebuilt.
+External publications and news are checked every 6 hours. A build is requested only
+when their content differs from the last successful deployment. Repository changes
+also trigger builds immediately.
 The build renders fetched announcements immediately without changing source files.
 Checked-in `gs_` news files provide fallback content if the sheet cannot be fetched
 or parsed; manually maintained news files are preserved.
@@ -76,11 +78,11 @@ The site will be generated in the `_site` directory.
 ### Tests
 
 ```bash
-bundle exec ruby test/google_sheets_news_test.rb
+bundle exec ruby -e 'Dir["test/*_test.rb"].sort.each { |file| require_relative file }'
 ```
 
-These tests build temporary Jekyll sites with simulated sheet responses and run
-before deployment.
+These tests check feed change detection and build temporary Jekyll sites with
+simulated sheet responses. They run before deployment.
 
 ### Clear Cache and Rebuild
 
@@ -109,15 +111,29 @@ The site is automatically built and deployed to GitHub Pages via GitHub Actions.
 
 **Automatic builds happen when:**
 
-- Code is pushed to `main` or `master` branch
-- Every 6 hours (to pick up changes from Google Sheets and publications.json)
+- Any change is pushed to `main` or `master`
+- The external content check detects changed publications or news
 - Manually triggered from the Actions tab
+
+The separate [external content workflow](.github/workflows/external-content.yml)
+checks both feeds every 6 hours, at 00:17, 06:17, 12:17, and 18:17 UTC. GitHub may
+delay scheduled runs. Unchanged feeds skip the build and its follow-up checks.
+Publication download/like counters and JSON formatting are ignored because they
+do not change the displayed content. Feed errors fail the check without changing
+the saved state, so the next check can retry.
 
 **Deployment process:**
 
-1. GitHub Actions builds the site (fetches external data from Google Sheets and `sauvik.me/papers.json`)
-2. Deploys the built site to the `gh-pages` branch
-3. GitHub Pages serves the site from `gh-pages` branch
+1. GitHub Actions captures validated snapshots of Google Sheets and `sauvik.me/papers.json`.
+2. Jekyll builds using those exact snapshots, without fetching either source again.
+3. The built site and `external-content-state.json` are deployed together to `gh-pages`.
+4. GitHub Pages serves the site. Future feed checks compare against the deployed state.
+
+The state contains content hashes, not credentials. It changes only after a
+successful build is deployed, so a failed build does not suppress retries.
+The first deployment initializes this state. Manual builds remain available
+through the **Deploy site** workflow; the **Check external content** workflow can
+also be run manually to check without forcing a build.
 
 **Configuration**: See `.github/workflows/deploy.yml` for the deployment workflow.
 

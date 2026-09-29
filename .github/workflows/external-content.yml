@@ -1,0 +1,40 @@
+name: Check external content
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # Allows repository_dispatch; no extra token is needed.
+
+concurrency:
+  group: external-content-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout checker and configuration
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: bin
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+      - name: Read the last deployed content state
+        run: |
+          git fetch --no-tags --depth=1 --filter=blob:none origin gh-pages
+          if git cat-file -e FETCH_HEAD:external-content-state.json 2>/dev/null; then
+            git show FETCH_HEAD:external-content-state.json > "$RUNNER_TEMP/external-content-state.json"
+          fi
+      - name: Compare external content
+        id: content
+        run: ruby bin/external_content.rb check --baseline "$RUNNER_TEMP/external-content-state.json"
+      - name: Request deployment when content changed
+        if: steps.content.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" -f event_type=external-content-updated

@@ -63,6 +63,15 @@ class GoogleSheetsNewsTest < Minitest::Test
     assert_fallback(Response.new('503', 'Unavailable'))
   end
 
+  def test_build_uses_captured_news_without_fetching_again
+    csv_file = File.join(@directory, 'news.csv')
+    File.write(csv_file, "date,title,content,inline\n2026-03-25,Captured news,Use this snapshot,true\n")
+    site = build(IOError.new('Snapshot builds must not make an HTTP request'), 'csv_file' => csv_file)
+    output = File.read(File.join(@destination, 'index.html'))
+    assert_includes output, 'Use this snapshot'
+    assert_equal ['Manual announcement', 'Captured news'], site.collections.fetch('news').docs.map { |doc| doc.data['title'] }
+  end
+
   def test_network_failure_uses_checked_in_news
     assert_fallback(IOError.new('Connection failed'))
   end
@@ -98,7 +107,7 @@ class GoogleSheetsNewsTest < Minitest::Test
     end
   end
 
-  def build(response)
+  def build(response, news_options = {})
     site = Jekyll::Site.new(Jekyll.configuration(
       'source' => @source,
       'destination' => @destination,
@@ -108,7 +117,7 @@ class GoogleSheetsNewsTest < Minitest::Test
       'quiet' => true,
       'future' => true,
       'collections' => { 'news' => { 'output' => true, 'permalink' => '/news/:path/' } },
-      'google_sheets_news' => { 'enabled' => true, 'csv_url' => 'https://example.test/news.csv' }
+      'google_sheets_news' => { 'enabled' => true, 'csv_url' => 'https://example.test/news.csv' }.merge(news_options)
     ))
     capture_subprocess_io do
       Net::HTTP.stub(:new, Connection.new(response)) { site.process }

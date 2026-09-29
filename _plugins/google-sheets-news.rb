@@ -31,37 +31,42 @@ module GoogleSheetsNews
       end
       
       begin
-        Jekyll.logger.info "Fetching news from Google Sheets..."
+        if config['csv_file']
+          # CI captures both feeds once, so the build and its saved state agree.
+          csv_data = File.read(config['csv_file'])
+        else
+          Jekyll.logger.info "Fetching news from Google Sheets..."
         
-        uri = URI(csv_url)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true if uri.scheme == 'https'
+          uri = URI(csv_url)
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.use_ssl = true if uri.scheme == 'https'
         
-        request = Net::HTTP::Get.new(uri.request_uri)
-        response = http.request(request)
-        
-        # Follow redirects (Google Sheets published URLs often redirect)
-        max_redirects = 5
-        redirect_count = 0
-        while response.is_a?(Net::HTTPRedirection) && redirect_count < max_redirects
-          redirect_count += 1
-          redirect_uri = URI(response['location'])
-          if redirect_uri.relative?
-            redirect_uri = uri + redirect_uri
-          end
-          Jekyll.logger.info "Following redirect to: #{redirect_uri}"
-          http = Net::HTTP.new(redirect_uri.host, redirect_uri.port)
-          http.use_ssl = true if redirect_uri.scheme == 'https'
-          request = Net::HTTP::Get.new(redirect_uri.request_uri)
+          request = Net::HTTP::Get.new(uri.request_uri)
           response = http.request(request)
-        end
         
-        if response.code != '200'
-          Jekyll.logger.warn "Failed to fetch Google Sheets: HTTP #{response.code}"
-          return
-        end
+          # Follow redirects (Google Sheets published URLs often redirect)
+          max_redirects = 5
+          redirect_count = 0
+          while response.is_a?(Net::HTTPRedirection) && redirect_count < max_redirects
+            redirect_count += 1
+            redirect_uri = URI(response['location'])
+            if redirect_uri.relative?
+              redirect_uri = uri + redirect_uri
+            end
+            Jekyll.logger.info "Following redirect to: #{redirect_uri}"
+            http = Net::HTTP.new(redirect_uri.host, redirect_uri.port)
+            http.use_ssl = true if redirect_uri.scheme == 'https'
+            request = Net::HTTP::Get.new(redirect_uri.request_uri)
+            response = http.request(request)
+          end
         
-        csv_data = response.body
+          if response.code != '200'
+            Jekyll.logger.warn "Failed to fetch Google Sheets: HTTP #{response.code}"
+            return
+          end
+        
+          csv_data = response.body
+        end
         news_items = parse_csv(csv_data)
         
         # Generators run after Jekyll reads collection files. Update the loaded
