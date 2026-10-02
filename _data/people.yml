@@ -15,7 +15,7 @@ students:
   - name: Isadora Krsek
     image: ik.jpeg
     role: CMU Ph.D.
-    description: NLP for privacy / security
+    description: NLP for privacy, S&P for IPV Professionals
     website: https://www.isadorakrsek.com/
     years: 2022-present
   - name: Kyzyl Monteiro
@@ -63,37 +63,52 @@ alumni:
     years: 2019-2024
 
 RAs:
-  - name: Eishita Tripathi
-    image: ET.png
-    role: Associate Researcher
-    description: NLP for Privacy
-    website: https://www.linkedin.com/in/eishita/
-    years: 2026
-
-  - name: Kevin Huang
-    image: KH.jpg
-    role: Research Assistant
-    description: NLP for Privacy
-    website: https://www.linkedin.com/in/zy-h/
-    years: 2024-present
-
-  - name: Daniel Amon-Kotey
-    image: DAK.jpg
-    role: Research Assistant
-    description: NLP for Privacy
-    website: https://www.linkedin.com/in/daniel-v-ak/
-    years: 2025-present
 
   - name: Yasmeen Galle
     image: YG.jpg
     role: Research Assistant
     description: S&P for IPV Professionals
     website: https://www.linkedin.com/in/yasmeen-galle-3a7892273/
-    years: 2025-present
+    years: Summer 2025-present
+
+  - name: Daniel Amon-Kotey
+    image: DAK.jpg
+    role: Research Assistant
+    description: NLP for Privacy
+    website: https://www.linkedin.com/in/daniel-v-ak/
+    years: Summer 2025-present
 
   - name: Iris Yin
     image: IY.jpg
     role: Research Assistant
-    description: Social Cybersecurity
+    description: Cybersecurity Behavior Interventions
     website: https://www.linkedin.com/in/iris-yin-28a490280/
-    years: 2026
+    years: Spring 2026-present
+
+  - name: Anirudh Janapati
+    image: Placeholder.jpg
+    role: Research Assistant
+    description: Interventions for AI-powered NCII 
+    website: https://www.linkedin.com/in/anirudh-janapati-651438290/
+    years: Fall 2026-present
+
+  - name: Eddie Liu
+    image: EL.jpg
+    role: Research Assistant
+    description: Interventions for AI-powered NCII 
+    website: https://www.linkedin.com/in/edward-liu-cmu/
+    years: Fall 2026-present
+
+  - name: Jeffrey Wang
+    image: Placeholder.jpg
+    role: Research Assistant
+    description: NLP for Privacy
+    website: https://www.linkedin.com/in/jeffrey-yiji-wang/
+    years: Fall 2026-present
+
+  - name: Sadhil Mehta
+    image: SM.jpg
+    role: Research Assistant
+    description: Interventions for AI-powered NCII 
+    website: https://github.com/Sadhil44
+    years: Fall 2026-present
