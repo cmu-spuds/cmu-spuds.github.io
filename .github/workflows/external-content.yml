@@ -23,7 +23,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2.2"
+          ruby-version: "3.2"
       - name: Read the last deployed content state
         run: |
           git fetch --no-tags --depth=1 --filter=blob:none origin gh-pages
